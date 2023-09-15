@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_14_071411) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_15_024508) do
+  create_table "employers", force: :cascade do |t|
+    t.string "name"
+    t.date "start_date"
+    t.date "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "personals", force: :cascade do |t|
     t.json "address"
     t.json "personal_info"

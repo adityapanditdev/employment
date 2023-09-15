@@ -1,31 +1,48 @@
-<div data-controller="personal" class='grid grid-rows-1 grid-flow-col gap-2'>
+<div class='grid grid-rows-1 grid-flow-col gap-2'>
   <!-- Modal toggle -->
-  <div class='flex justify-between'>
-    <div class='heading'>
-      <h3 class='text-3xl font-extrabold dark:text-white'>Create Personal</h3>
-    </div>
-    <div class='button'>
-      <%= button_tag "Personal", data: { modal_target: "authentication-modal", modal_toggle: "authentication-modal" }, class: "block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800", type: "button" %>
-      <%= render partial: 'shared/modal' %>
+  <div data-controller='personal'>
+    <div class='flex justify-between'>
+      <div class='heading'>
+        <h3 class='text-3xl font-extrabold dark:text-white'>Create Personal</h3>
+      </div>
+      <div class='button'>
+        <%= button_tag "Personal", data: { modal_target: "authentication-modal", modal_toggle: "authentication-modal" }, class: "block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800", type: "button" %>
+        <%= render partial: 'shared/personal_modal' %>
+      </div>
     </div>
   </div>
+</div>
 
-  <div class='flex justify-between'>
-    <div class='heading'>
-      <h3 class='text-3xl font-extrabold dark:text-white'>Create Employment</h3>
-    </div>
-    <div class='button'>
-      <%= button_tag "Employment", data: { modal_target: "employment-modal", modal_toggle: "employment-modal" }, class: "block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800", type: "button" %>
-      <%= render partial: 'shared/modal' %>
+<div class = 'grid grid-rows-1 grid-flow-col gap-2 mt-2'>
+  <div data-controller='employer'>
+    <div class='flex justify-between'>
+      <div class='heading'>
+        <h3 class='text-3xl font-extrabold dark:text-white'>Create Employment</h3>
+      </div>
+      <div class='button'>
+        <%= button_tag "Employment", data: { modal_target: "employment-modal", modal_toggle: "employment-modal" }, class: "block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800", type: "button" %>
+        <%= render partial: 'shared/employer_modal' %>
+      </div>
     </div>
   </div>
-  <h2 class="m-2 text-lg font-semibold text-gray-900 dark:text-white">Personal List</h2>
-  <ol class="max-w-md space-y-1 text-gray-500 dark:text-gray-400">
-    <% @personals.each do |personal|%>
+</div>
+<div class='mt-2 grid grid-rows-1 grid-flow-col gap-2'>
+  <div data-controller="personal">
+    <h2 class="m-2 text-lg font-semibold text-gray-900 dark:text-white">Personal List</h2>
+    <ul data-personal-target="personalList" id="personal_list" class="max-w-md space-y-1 text-gray-500 dark:text-gray-400">
       <li>
-        <span class="font-semibold text-gray-900 dark:text-white"><%= personal.email%></span>
+        <span class="font-semibold text-gray-900 dark:text-white">Hello</span>
       </li>
       <hr>
-    <%end%>
-  </ol>
+    </ul>
+  </div>
+  <div data-controller="employer">
+    <h2 class="m-2 text-lg font-semibold text-gray-900 dark:text-white">Employer</h2>
+    <ul data-employer-target="employerList" id="employer_list" class="max-w-md space-y-1 text-gray-500 dark:text-gray-400">
+      <li>
+        <span class="font-semibold text-gray-900 dark:text-white">Hello</span>
+      </li>
+      <hr>
+    </ul>
+  </div>
 </div>

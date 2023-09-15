@@ -3,7 +3,11 @@ class PersonalsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create]
 
   def index
-    @personals = Personal.all
+  end
+
+  def all
+    personals = Personal.all
+    render json: personals
   end
 
   def create
