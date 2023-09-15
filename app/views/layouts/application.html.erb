@@ -10,11 +10,13 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" %>
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/datepicker.min.js' %>
+
 
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <main class="container mx-auto mt-28 px-5">
       <%= yield %>
     </main>
   </body>

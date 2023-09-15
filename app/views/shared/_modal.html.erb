@@ -1,0 +1,95 @@
+<!-- Main modal -->
+<div id="authentication-modal" data-personal-target='modalClose' tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+  <div class="relative w-full max-w-md max-h-full">
+    <!-- Modal content -->
+    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+      <%= button_tag type: "button", class: "absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white", data: { modal_hide: "authentication-modal" } do %>
+        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+        </svg>
+        <span class="sr-only">Close modal</span>
+      <% end %>
+      <div class="px-6 py-6 lg:px-8">
+        <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Personal Data Create</h3>
+        <%= form_tag("#", class: "space-y-6") do %>
+          <div>
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+            <%= email_field_tag "email", nil, id: "email", data: {'personal-target': 'email', action: 'input->personal#validateData'}, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white", placeholder: "name@company.com"%>
+            <div data-personal-target="emailError" class="text-xs text-red-900 dark:text-white"></div>
+          </div>
+
+          <div>
+            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
+            <%= text_field_tag "first_name", nil, id: "first_name", data: {'personal-target': 'firstName', action: 'input->personal#validateData'}, maxlength: 25, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white", placeholder: "first_name"%>
+            <div data-personal-target="firstNameError" class="text-xs text-red-900 dark:text-white"></div>
+          </div>
+
+          <div>
+            <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
+            <%= text_field_tag "last_name", nil, id: "last_name", data: {'personal-target': 'lastName', action: 'input->personal#validateData'}, maxlength: 50, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white", placeholder: "last_name"%>
+            <div data-personal-target="lastNameError" class="text-xs text-red-900 dark:text-white"></div>
+          </div>
+
+          <div>
+            <label for="nickname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nickname</label>
+            <%= text_field_tag "nickname", nil, id: "nickname", data: {'personal-target': 'nickname'}, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white", placeholder: "nickname"%>
+          </div>
+
+          <div>
+            <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone Number</label>
+            <%= text_field_tag "phone", nil, id: "phone", data: {'personal-target': 'phoneNumber', action: 'input->personal#phoneNumber'}, maxlength: 12, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white", placeholder: "123-456-7890", pattern: "[0-9]{3}-[0-9]{3}-[0-9]{4}"%>
+            <div data-personal-target="phoneError" class="text-xs text-red-900 dark:text-white"></div>
+          </div>
+
+          <hr>
+          <h5 class="text-lg font-black text-gray-900 dark:text-white">Address</h5>
+          <div>
+            <label for="street" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Street</label>
+            <%= text_field_tag "street", nil, id: "street", data: {'personal-target': 'street'}, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white", placeholder: "123 Main St"%>
+          </div>
+        
+          <div>
+            <label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">City</label>
+            <%= text_field_tag "city", nil, id: "city", data: {'personal-target': 'city'}, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white", placeholder: "Your City"%>
+          </div>
+          
+          <div>
+            <label for="state" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">State</label>
+            <%= text_field_tag "state", nil, id: "state", data: {'personal-target': 'state'}, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white", placeholder: "Your State"%>
+          </div>
+          
+          <div>
+            <label for="zip" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ZIP Code</label>
+            <%= text_field_tag "zip", nil, id: "zip", data: {'personal-target': 'zip'}, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white", placeholder: "12345"%>
+          </div>
+        
+          <%= button_tag "Submit", type: "button", data: {action: 'click->personal#create'}, class: "w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main modal -->
+<div id="employment-modal" data-personal-target='modalClose' tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+  <div class="relative w-full max-w-md max-h-full">
+    <!-- Modal content -->
+    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+      <%= button_tag type: "button", class: "absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white", data: { modal_hide: "authentication-modal" } do %>
+        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+        </svg>
+        <span class="sr-only">Close modal</span>
+      <% end %>
+      <div class="px-6 py-6 lg:px-8">
+        <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Employer Create</h3>
+        <div>
+          <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+          <%= text_field_tag "name", nil, id: "name", data: {'personal-target': 'name', action: 'input->personal#validateData'}, maxlength: 25, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white", placeholder: "name"%>
+          <div data-personal-target="nameError" class="text-xs text-red-900 dark:text-white"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
